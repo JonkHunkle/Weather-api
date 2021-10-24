@@ -52,7 +52,7 @@ $("#hello").on("click", function () {
         console.log(temp);
         iconURL = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
         var futureWeather = $(`
-         <span>
+         <span id='miniCard'>
          <li>Temperature: ${temp}</li>
          <li>Humidity: ${humidity}</li>
          <li>Wind Speed: ${windSpeed}</li>
@@ -64,4 +64,10 @@ $("#hello").on("click", function () {
     });
 });
 
-//click the button and loop through the data to make 5 minicard
+//add 5 day forecast title
+
+//add a catch for when people misspell
+
+//save local storage
+
+// grab local storage and put on page

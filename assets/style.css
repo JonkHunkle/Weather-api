@@ -11,3 +11,7 @@ header {
 #weather-Card {
   background-color: green;
 }
+#miniCard {
+  padding: 20px;
+  border: 2px solid black;
+}
