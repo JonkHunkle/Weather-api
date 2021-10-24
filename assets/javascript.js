@@ -22,15 +22,28 @@ $("#hello").on("click", function () {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       var windSpeed = data.list[0].wind.speed;
       var weatherIcon = data.list[0].weather[0].icon;
       var humidity = data.list[0].main.humidity;
       var temp = data.list[0].main.temp;
       var cityName = data.city.name;
-      console.log(cityName);
-      console.log(temp);
-      console.log(humidity);
-      console.log(`http://openweathermap.org/img/wn/${weatherIcon}.png`);
-      console.log(data);
+      var iconURL = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+
+      var currentHTML = $(`
+      <h3>Current Weather!</h3>
+      <h5>${cityName}</h5>
+      <ul>~~Todays Information~~
+      <li>Temperature: ${temp}</li>
+      <li>Humidity: ${humidity}</li>
+      <li>Wind Speed: ${windSpeed}</li>
+      <img src='${iconURL}'>
+      </ul>
+      `);
+
+      $("#currentWeather").append(currentHTML);
+      checkForecast(data);
     });
 });
+
+//click the button and loop through the data to make 5 minicard
