@@ -31,6 +31,7 @@ $("#hello").on("click", function () {
       var iconURL = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
 
       var currentHTML = $(`
+      <span>
       <h3>Current Weather!</h3>
       <h5>${cityName}</h5>
       <ul>~~Todays Information~~
@@ -39,10 +40,27 @@ $("#hello").on("click", function () {
       <li>Wind Speed: ${windSpeed}</li>
       <img src='${iconURL}'>
       </ul>
+      </span>
       `);
-
       $("#currentWeather").append(currentHTML);
-      checkForecast(data);
+      for (let i = 0; i < data.list.length; i += 8) {
+        windSpeed = data.list[i].wind.speed;
+        weatherIcon = data.list[i].weather[0].icon;
+        humidity = data.list[i].main.humidity;
+        temp = data.list[i].main.temp;
+        cityName = data.city.name;
+        console.log(temp);
+        iconURL = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+        var futureWeather = $(`
+         <span>
+         <li>Temperature: ${temp}</li>
+         <li>Humidity: ${humidity}</li>
+         <li>Wind Speed: ${windSpeed}</li>
+         <img src='${iconURL}'>
+         </span>
+         `);
+        $("#forecast").append(futureWeather);
+      }
     });
 });
 
